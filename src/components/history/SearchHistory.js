@@ -31,7 +31,7 @@ const SearchHistory = ({ history, onSelect }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Histórico de Buscas</Text>
 
-      <View style={{ maxHeight: 300 }}>
+      <View style={{ maxHeight: 250 }}>
         <FlatList
           data={history}
           renderItem={renderItem}
