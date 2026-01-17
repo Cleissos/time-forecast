@@ -18,25 +18,16 @@ const SearchHistory = ({ history, onSelect }) => {
   );
 
   return (
-    // <View style={styles.container}>
-    //   <Text style={styles.title}>Histórico de Buscas</Text>
-    //   <FlatList
-    //     data={history}
-    //     renderItem={renderItem}
-    //     keyExtractor={(item) => item.id}
-    //     scrollEnabled={false}
-    //   />
-    // </View>
-
     <View style={styles.container}>
       <Text style={styles.title}>Histórico de Buscas</Text>
 
-      <View style={{ maxHeight: 250 }}>
+      <View style={{ maxHeight: 300 }}>
         <FlatList
           data={history}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={true}
+          contentContainerStyle={{ paddingBottom: 20 }}
         />
       </View>
     </View>
