@@ -27,7 +27,7 @@ const SearchHistory = ({ history, onSelect }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={true}
-          contentContainerStyle={{ paddingBottom: 20 }}
+          contentContainerStyle={{ paddingBottom: 30 }}
         />
       </View>
     </View>
