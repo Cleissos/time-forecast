@@ -92,7 +92,7 @@ ${EXPO_SNACK_LINK}
         timestamp: new Date().toLocaleTimeString(),
       };
       
-      setSearchHistory(prev => [newSearch, ...prev.slice(0, 4)]);
+      setSearchHistory(prev => [newSearch, ...prev.slice(0, 10)]);
     } catch (err) {
       setError('Cidade não encontrada. Tente novamente.');
       Vibration.vibrate(500); // Feedback tátil
