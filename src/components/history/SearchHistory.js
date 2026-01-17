@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from './styles';
 
 const SearchHistory = ({ history, onSelect }) => {

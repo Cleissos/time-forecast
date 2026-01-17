@@ -3,7 +3,6 @@ import { LineChart } from 'react-native-chart-kit';
 import { useState, useMemo } from 'react';
 import styles from './styles';
 
-
 const screenWidth = Dimensions.get('window').width;
 
 const ForecastChartScreen = ({ route }) => {
