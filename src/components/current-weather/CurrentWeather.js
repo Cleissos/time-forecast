@@ -28,30 +28,30 @@ const HomeScreen = ({ navigation }) => {
     try {
       // SEU LINK DO EXPO SNACK
       const EXPO_SNACK_LINK = 'https://snack.expo.dev/@cristianowanzeler/previsaodotempo';
-      
+
       const message = `🌤️ PREVISÃO DO TEMPO 🌤️
 
-📍 Local: ${weatherData.name}, ${weatherData.sys.country}
-🌡️ Temperatura: ${Math.round(weatherData.main.temp)}°C
-🌈 Condição: ${weatherData.weather[0].description}
-💧 Umidade: ${weatherData.main.humidity}%
-💨 Vento: ${weatherData.wind.speed} m/s
-📊 Pressão: ${weatherData.main.pressure} hPa
+    📍 Local: ${weatherData.name}, ${weatherData.sys.country}
+    🌡️ Temperatura: ${Math.round(weatherData.main.temp)}°C
+    🌈 Condição: ${weatherData.weather[0].description}
+    💧 Umidade: ${weatherData.main.humidity}%
+    💨 Vento: ${weatherData.wind.speed} m/s
+    📊 Pressão: ${weatherData.main.pressure} hPa
 
 ━━━━━━━━━━━━━━━━━━━
-📱 *APP PREVISÃO DO TEMPO*
+    📱 *APP PREVISÃO DO TEMPO*
 
-🔗 Acesse e teste online:
-${EXPO_SNACK_LINK}
+    🔗 Acesse e teste online:
+    ${EXPO_SNACK_LINK}
 
 ━━━━━━━━━━━━━━━━━━━
-✨ Funcionalidades do App:
-• Previsão atual e 5 dias
-• Gráficos interativos
-• Histórico de buscas
-• Compartilhamento
+    ✨ Funcionalidades do App:
+    • Previsão atual e 5 dias
+    • Gráficos interativos
+    • Histórico de buscas
+    • Compartilhamento
 
-#PrevisãoDoTempo #${weatherData.name.replace(/\s/g, '')} #AppReactNative`;
+    #PrevisãoDoTempo #${weatherData.name.replace(/\s/g, '')} #AppReactNative`;
 
       const shareOptions = {
         message,
@@ -60,7 +60,7 @@ ${EXPO_SNACK_LINK}
       };
 
       await Share.share(shareOptions);
-      
+
     } catch (error) {
       console.log('Erro ao compartilhar:', error);
       Alert.alert(
@@ -83,7 +83,7 @@ ${EXPO_SNACK_LINK}
     try {
       const data = await fetchWeatherData(city);
       setWeatherData(data);
-      
+
       // Adicionar ao histórico
       const newSearch = {
         id: Date.now().toString(),
@@ -91,7 +91,7 @@ ${EXPO_SNACK_LINK}
         temperature: Math.round(data.main.temp),
         timestamp: new Date().toLocaleTimeString(),
       };
-      
+
       setSearchHistory(prev => [newSearch, ...prev.slice(0, 9)]);
     } catch (err) {
       setError('Cidade não encontrada. Tente novamente.');
@@ -103,7 +103,7 @@ ${EXPO_SNACK_LINK}
 
   const handleForecastPress = async () => {
     if (!city.trim()) return;
-    
+
     setLoading(true);
     try {
       const forecastData = await fetchForecastData(city);
@@ -128,7 +128,7 @@ ${EXPO_SNACK_LINK}
           <Text style={styles.buttonText}>Buscar</Text>
         </TouchableOpacity>
       </View>
-{/* Aqui o Loading é chamado */}
+      {/* Aqui o Loading é chamado */}
       {loading && <Loading />}
 
       {error ? (
@@ -136,16 +136,17 @@ ${EXPO_SNACK_LINK}
       ) : null}
       {/* Fim loading */}
 
-{/* Aqui o Card é chamado (WeatherCard) */}
+      {/* Aqui o Card é chamado (WeatherCard) */}
       {weatherData && (
         <>
-          <WeatherCard 
-            weatherData={weatherData} 
-            onForecastPress={handleForecastPress}
+          <WeatherCard
+            weatherData={weatherData}
+            // onForecastPress={handleForecastPress}
             onShare={handleShare}
+
           />
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             style={styles.forecastButton}
             onPress={handleForecastPress}
           >
@@ -155,11 +156,11 @@ ${EXPO_SNACK_LINK}
           </TouchableOpacity>
         </>
       )}
-{/* Aqui terminha o WheaterCard */}
+      {/* Aqui terminha o WheaterCard */}
 
-{/* Aqui o histórico é chamado */}
+      {/* Aqui o histórico é chamado */}
       {searchHistory.length > 0 && (
-        <SearchHistory 
+        <SearchHistory
           history={searchHistory}
           onSelect={(selectedCity) => {
             setCity(selectedCity.split(',')[0]);
