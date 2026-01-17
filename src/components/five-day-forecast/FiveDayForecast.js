@@ -128,7 +128,7 @@ const ForecastChartScreen = ({ route }) => {
             <Text style={styles.forecastCondition}>
               {item.weather[0].description}
             </Text>
-
+            
             <View style={styles.forecastDetails}>
               <Text>💧 {item.main.humidity}%</Text>
               <Text>💨 {item.wind.speed} m/s</Text>
