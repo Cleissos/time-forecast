@@ -1,11 +1,11 @@
-import { View, Text, FlatList, TouchableOpacity} from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import styles from './styles';
 
 const SearchHistory = ({ history, onSelect }) => {
   if (history.length === 0) return null;
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.historyItem}
       onPress={() => onSelect(item.city)}
     >
@@ -18,14 +18,27 @@ const SearchHistory = ({ history, onSelect }) => {
   );
 
   return (
+    // <View style={styles.container}>
+    //   <Text style={styles.title}>Histórico de Buscas</Text>
+    //   <FlatList
+    //     data={history}
+    //     renderItem={renderItem}
+    //     keyExtractor={(item) => item.id}
+    //     scrollEnabled={false}
+    //   />
+    // </View>
+
     <View style={styles.container}>
       <Text style={styles.title}>Histórico de Buscas</Text>
-      <FlatList
-        data={history}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        scrollEnabled={false}
-      />
+
+      <View style={{ maxHeight: 300 }}>
+        <FlatList
+          data={history}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={true}
+        />
+      </View>
     </View>
   );
 };
