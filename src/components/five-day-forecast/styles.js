@@ -2,12 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-
-    // paddingHorizontal: 20,
-    // paddingBottom: 80, // 🔥 mais espaço para scroll
-    // backgroundColor: '#f0f8ff',
-    // flexGrow: 1, // 🔥 ESSENCIAL PARA SCROLL
-    paddingHorizontal: 20,
+  paddingHorizontal: 20,
   paddingBottom: 100, // espaço para não cortar o último item
   backgroundColor: '#f0f8ff',
   },
