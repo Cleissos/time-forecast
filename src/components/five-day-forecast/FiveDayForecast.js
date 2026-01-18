@@ -135,6 +135,7 @@ const ForecastChartScreen = ({ route }) => {
           </View>
         );
       }}
+       showsVerticalScrollIndicator={true}
     />
   );
 };
