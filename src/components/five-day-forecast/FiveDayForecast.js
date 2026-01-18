@@ -75,6 +75,7 @@ const ForecastChartScreen = ({ route }) => {
       scrollEnabled={true}
       // Melhora a detecção de toque
       nestedScrollEnabled={true} 
+      showsVerticalScrollIndicator={true}
       ListHeaderComponent={
         <>
           <Text style={styles.title}>Previsão para 5 Dias</Text>
