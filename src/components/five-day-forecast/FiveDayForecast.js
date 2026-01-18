@@ -64,6 +64,7 @@ const ForecastChartScreen = ({ route }) => {
       data={listData}
       keyExtractor={(item, index) => index.toString()}
       contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={true}
       ListHeaderComponent={
         <>
           <Text style={styles.title}>Previsão para 5 Dias</Text>
@@ -135,7 +136,7 @@ const ForecastChartScreen = ({ route }) => {
           </View>
         );
       }}
-      showsVerticalScrollIndicator={true}
+      
     />
   );
 };
