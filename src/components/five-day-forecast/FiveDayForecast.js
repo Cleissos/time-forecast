@@ -60,6 +60,7 @@ const ForecastChartScreen = ({ route }) => {
       : dailyForecast[0][1].items;
 
   return (
+    <View style={{flex: 1}}>
     <FlatList
       data={listData}
       keyExtractor={(item, index) => index.toString()}
@@ -138,6 +139,7 @@ const ForecastChartScreen = ({ route }) => {
       }}
       
     />
+    </View>
   );
 };
 
