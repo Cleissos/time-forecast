@@ -2,9 +2,10 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
-    paddingBottom: 40, // Espaço extra no final
-    // Remova o flexGrow: 1 daqui se o scroll não funcionar
+    // paddingHorizontal: 20,
+    // paddingBottom: 40, // Espaço extra no final
+    // // Remova o flexGrow: 1 daqui se o scroll não funcionar
+    paddingBottom: 20,
   },
   loading: {
     flex: 1,
