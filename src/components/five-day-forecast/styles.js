@@ -2,9 +2,12 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
+  // paddingHorizontal: 20,
+  // paddingBottom: 100, // espaço para não cortar o último item
+  // backgroundColor: '#f0f8ff',
   paddingHorizontal: 20,
-  paddingBottom: 100, // espaço para não cortar o último item
-  backgroundColor: '#f0f8ff',
+  paddingBottom: 120, // Aumente o padding final para garantir que o último item apareça
+  flexGrow: 1, // ADICIONE ISSO: permite que o conteúdo cresça dentro da lista
   },
   loading: {
     flex: 1,

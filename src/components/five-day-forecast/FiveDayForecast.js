@@ -62,157 +62,153 @@ const ForecastChartScreen = ({ route }) => {
       : dailyForecast[0][1].items;
 
   return (
-    // <View style={{flex: 1}}>
-    // <FlatList
-    //   data={listData}
-    //   keyExtractor={(index) => index.toString()}
-    //   contentContainerStyle={styles.container}
-    //   showsVerticalScrollIndicator={true}
-    //   ListHeaderComponent={
-    //     <>
-    //       <Text style={styles.title}>Previsão para 5 Dias</Text>
 
-    //       <View style={styles.chartContainer}>
-    //         <LineChart
-    //           data={chartData}
-    //           width={screenWidth - 40}
-    //           height={220}
-    //           onDataPointClick={({ index }) => {
-    //             setSelectedDay(index);
-    //           }}
-    //           chartConfig={{
-    //             backgroundColor: '#2196F3',
-    //             backgroundGradientFrom: '#2196F3',
-    //             backgroundGradientTo: '#21CBF3',
-    //             decimalPlaces: 0,
-    //             color: (opacity = 1) =>
-    //               `rgba(255, 255, 255, ${opacity})`,
-    //             labelColor: (opacity = 1) =>
-    //               `rgba(255, 255, 255, ${opacity})`,
-    //             propsForDots: {
-    //               r: '6',
-    //               strokeWidth: '2',
-    //               stroke: '#ffa726',
-    //             },
-    //           }}
-    //           bezier
-    //         />
+    // Use SafeAreaView para garantir que o conteúdo não fique sob o notch (iOS/Android Moderno)
+  // E garanta que a View externa tenha flex: 1
+  <View style={{ flex: 1, backgroundColor: '#f0f8ff' }}>
+    <FlatList
+      data={listData}
+      keyExtractor={(item, index) => index.toString()}
+      // Mantenha o estilo do conteúdo separado
+      contentContainerStyle={styles.container}
+      // Garante que o scroll seja ativado
+      scrollEnabled={true}
+      // Melhora a detecção de toque
+      nestedScrollEnabled={true} 
+      ListHeaderComponent={
+        <>
+          <Text style={styles.title}>Previsão para 5 Dias</Text>
 
-    //         {selectedDay !== null && (
-    //           <Text style={{ color: '#fff', marginTop: 8 }}>
-    //             📅 {new Date(dailyForecast[selectedDay][0].dt * 1000)
-    //               .toLocaleDateString('pt-BR', {
-    //                 weekday: 'long',
-    //                 day: '2-digit',
-    //                 month: '2-digit',
-    //               })}
-    //           </Text>
-    //         )}
-    //       </View>
+          <View style={styles.chartContainer}>
+            <LineChart
+              data={chartData}
+              width={screenWidth - 60}
+              height={220}
+              onDataPointClick={({ index }) => {
+                setSelectedDay(index);
+              }}
+              chartConfig={{
+                backgroundColor: '#2196F3',
+                backgroundGradientFrom: '#2196F3',
+                backgroundGradientTo: '#21CBF3',
+                decimalPlaces: 0,
+                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                propsForDots: {
+                  r: '6',
+                  strokeWidth: '2',
+                  stroke: '#ffa726',
+                },
+              }}
+              bezier
+              style={styles.chart}
+            />
 
-    //       <Text style={styles.sectionTitle}>Detalhes por Horário</Text>
-    //     </>
-    //   }
-    //   renderItem={({ item }) => {
-    //     const date = new Date(item.dt * 1000);
-
-    //     return (
-    //       <View style={styles.forecastItem}>
-    //         <Text style={styles.forecastTime}>
-    //           {date.toLocaleTimeString('pt-BR', {
-    //             hour: '2-digit',
-    //             minute: '2-digit',
-    //           })}
-    //         </Text>
-
-    //         <Text style={styles.forecastTemp}>
-    //           {Math.round(item.main.temp)}°C
-    //         </Text>
-
-    //         <Text style={styles.forecastCondition}>
-    //           {item.weather[0].description}
-    //         </Text>
-    //         <View style={styles.forecastDetails}>
-    //           <Text>💧 {item.main.humidity}%</Text>
-    //           <Text>💨 {item.wind.speed} m/s</Text>
-    //         </View>
-    //       </View>
-    //     );
-    //   }}
-
-    // />
-    // </View>
-
-    <View style={{ flex: 1, backgroundColor: '#f0f8ff' }}>
-      <FlatList
-        data={listData}
-        keyExtractor={(item, index) => index.toString()}
-        // Use o contentContainerStyle para o padding interno
-        contentContainerStyle={styles.container}
-        // Isso ajuda a performance e garante que o scroll entenda o tamanho
-        removeClippedSubviews={false}
-        ListHeaderComponent={
-          <>
-            <Text style={styles.title}>Previsão para 5 Dias</Text>
-
-            <View style={styles.chartContainer}>
-              <LineChart
-                data={chartData}
-                width={screenWidth - 60}
-                height={220}
-                onDataPointClick={({ index }) => {
-                  setSelectedDay(index);
-                }}
-                chartConfig={{
-                  backgroundColor: '#2196F3',
-                  backgroundGradientFrom: '#2196F3',
-                  backgroundGradientTo: '#21CBF3',
-                  decimalPlaces: 0,
-                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  propsForDots: {
-                    r: '6',
-                    strokeWidth: '2',
-                    stroke: '#ffa726',
-                  },
-                }}
-                bezier
-                style={styles.chart}
-              />
-
-              {selectedDay !== null && (
-                <Text style={{ color: '#fff', marginTop: 8, textAlign: 'center' }}>
-                  📅 {new Date(dailyForecast[selectedDay][1].items[0].dt * 1000)
-                    .toLocaleDateString('pt-BR', {
-                      weekday: 'long',
-                      day: '2-digit',
-                      month: '2-digit',
-                    })}
-                </Text>
-              )}
-            </View>
-
-            <Text style={styles.sectionTitle}>Detalhes por Horário</Text>
-          </>
-        }
-        renderItem={({ item }) => {
-          const date = new Date(item.dt * 1000);
-          return (
-            <View style={styles.forecastItem}>
-              <Text style={styles.forecastTime}>
-                {date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+            {selectedDay !== null && (
+              <Text style={{ color: '#fff', marginTop: 8, textAlign: 'center' }}>
+                📅 {new Date(dailyForecast[selectedDay][1].items[0].dt * 1000)
+                  .toLocaleDateString('pt-BR', {
+                    weekday: 'long',
+                    day: '2-digit',
+                    month: '2-digit',
+                  })}
               </Text>
-              <Text style={styles.forecastTemp}>{Math.round(item.main.temp)}°C</Text>
-              <Text style={styles.forecastCondition}>{item.weather[0].description}</Text>
-              <View style={styles.forecastDetails}>
-                <Text>💧 {item.main.humidity}%</Text>
-                <Text>💨 {item.wind.speed} m/s</Text>
-              </View>
+            )}
+          </View>
+
+          <Text style={styles.sectionTitle}>Detalhes por Horário</Text>
+        </>
+      }
+      renderItem={({ item }) => {
+        const date = new Date(item.dt * 1000);
+        return (
+          <View style={styles.forecastItem}>
+            <Text style={styles.forecastTime}>
+              {date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+            </Text>
+            <Text style={styles.forecastTemp}>{Math.round(item.main.temp)}°C</Text>
+            <Text style={styles.forecastCondition}>{item.weather[0].description}</Text>
+            <View style={styles.forecastDetails}>
+              <Text>💧 {item.main.humidity}%</Text>
+              <Text>💨 {item.wind.speed} m/s</Text>
             </View>
-          );
-        }}
-      />
-    </View>
+          </View>
+        );
+      }}
+    />
+  </View>
+    
+
+    // <View style={{ flex: 1, backgroundColor: '#f0f8ff' }}>
+    //   <FlatList
+    //     data={listData}
+    //     keyExtractor={(item, index) => index.toString()}
+    //     // Use o contentContainerStyle para o padding interno
+    //     contentContainerStyle={styles.container}
+    //     // Isso ajuda a performance e garante que o scroll entenda o tamanho
+    //     removeClippedSubviews={false}
+    //     ListHeaderComponent={
+    //       <>
+    //         <Text style={styles.title}>Previsão para 5 Dias</Text>
+
+    //         <View style={styles.chartContainer}>
+    //           <LineChart
+    //             data={chartData}
+    //             width={screenWidth - 60}
+    //             height={220}
+    //             onDataPointClick={({ index }) => {
+    //               setSelectedDay(index);
+    //             }}
+    //             chartConfig={{
+    //               backgroundColor: '#2196F3',
+    //               backgroundGradientFrom: '#2196F3',
+    //               backgroundGradientTo: '#21CBF3',
+    //               decimalPlaces: 0,
+    //               color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    //               labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    //               propsForDots: {
+    //                 r: '6',
+    //                 strokeWidth: '2',
+    //                 stroke: '#ffa726',
+    //               },
+    //             }}
+    //             bezier
+    //             style={styles.chart}
+    //           />
+
+    //           {selectedDay !== null && (
+    //             <Text style={{ color: '#fff', marginTop: 8, textAlign: 'center' }}>
+    //               📅 {new Date(dailyForecast[selectedDay][1].items[0].dt * 1000)
+    //                 .toLocaleDateString('pt-BR', {
+    //                   weekday: 'long',
+    //                   day: '2-digit',
+    //                   month: '2-digit',
+    //                 })}
+    //             </Text>
+    //           )}
+    //         </View>
+
+    //         <Text style={styles.sectionTitle}>Detalhes por Horário</Text>
+    //       </>
+    //     }
+    //     renderItem={({ item }) => {
+    //       const date = new Date(item.dt * 1000);
+    //       return (
+    //         <View style={styles.forecastItem}>
+    //           <Text style={styles.forecastTime}>
+    //             {date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+    //           </Text>
+    //           <Text style={styles.forecastTemp}>{Math.round(item.main.temp)}°C</Text>
+    //           <Text style={styles.forecastCondition}>{item.weather[0].description}</Text>
+    //           <View style={styles.forecastDetails}>
+    //             <Text>💧 {item.main.humidity}%</Text>
+    //             <Text>💨 {item.wind.speed} m/s</Text>
+    //           </View>
+    //         </View>
+    //       );
+    //     }}
+    //   />
+    // </View>
   );
 };
 
